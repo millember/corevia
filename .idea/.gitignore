@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# PyInstaller
+# Если позже создадим corevia.spec вручную и будем использовать его,
+# его НЕ надо игнорировать.
+*.manifest
+
+# Local Corevia data
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+logs/
+*.log
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*~
