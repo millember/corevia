@@ -41,7 +41,7 @@ class MainWindow(QMainWindow):
         self._i18n.language_changed.connect(
             self._apply_translations
         )
-        self._apply_translations
+        self._apply_translations()
 
     def _change_language(
         self,
