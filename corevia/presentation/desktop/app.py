@@ -11,11 +11,12 @@ from corevia.presentation.desktop.widgets.language_button import (
     LanguageButton,
 )
 
+
 class MainWindow(QMainWindow):
     def __init__(
         self,
         i18n: I18n,
-        ) -> None:
+    ) -> None:
         super().__init__()
 
         self._i18n = i18n
@@ -38,9 +39,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(container)
         self.resize(900, 600)
 
-        self._i18n.language_changed.connect(
-            self._apply_translations
-        )
+        self._i18n.language_changed.connect(self._apply_translations)
         self._apply_translations()
 
     def _change_language(
@@ -53,12 +52,8 @@ class MainWindow(QMainWindow):
         self,
         *_args,
     ) -> None:
-        self.setWindowTitle(
-            self._i18n.tr("app.title")
-        )
-        self._welcome_label.setText(
-            self._i18n.tr("app.welcome")
-        )
+        self.setWindowTitle(self._i18n.tr("app.title"))
+        self._welcome_label.setText(self._i18n.tr("app.welcome"))
 
 
 def run_desktop() -> int:
@@ -66,9 +61,7 @@ def run_desktop() -> int:
 
     i18n = I18n()
 
-    window = MainWindow(
-        i18n=i18n
-    )
+    window = MainWindow(i18n=i18n)
     window.show()
 
     return app.exec()

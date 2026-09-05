@@ -3,11 +3,12 @@ from importlib.resources import files
 
 from PySide6.QtCore import QObject, Signal
 
+
 class I18n(QObject):
     language_changed = Signal(str)
 
     DEFAULT_LANGUAGE = "en"
-    SUPPORTED_LANGUAGES = {"en", "ru"}
+    SUPPORTED_LANGUAGES = frozenset({"en", "ru"})
 
     def __init__(
         self,
@@ -26,10 +27,7 @@ class I18n(QObject):
         return self._language
 
     def tr(self, key: str) -> str:
-        return self._translations.get(
-            key,
-            key
-        )
+        return self._translations.get(key, key)
 
     def set_language(
         self,
@@ -45,15 +43,8 @@ class I18n(QObject):
         self.language_changed.emit(language)
 
     def _load(self) -> None:
-        locale_file = (
-            files("corevia.locales")
-            .joinpath(f"{self._language}.json")
-        )
-        self._translations = json.loads(
-            locale_file.read_text(
-                encoding="utf-8"
-            )
-        )
+        locale_file = files("corevia.locales").joinpath(f"{self._language}.json")
+        self._translations = json.loads(locale_file.read_text(encoding="utf-8"))
 
     @classmethod
     def _validate_language(
@@ -61,6 +52,4 @@ class I18n(QObject):
         language: str,
     ) -> None:
         if language not in cls.SUPPORTED_LANGUAGES:
-            raise ValueError(
-                f"Unsupported language: {language}"
-            )
+            raise ValueError(f"Unsupported language: {language}")
