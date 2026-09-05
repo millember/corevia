@@ -6,7 +6,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from corevia.presentation.common.i18 import I18n
+from corevia.presentation.common.i18n import I18n
 from corevia.presentation.desktop.widgets.language_button import (
     LanguageButton,
 )

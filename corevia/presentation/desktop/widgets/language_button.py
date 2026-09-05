@@ -2,7 +2,7 @@ from collections.abc import Callable
 
 from PySide6.QtWidgets import QMenu, QToolButton
 
-from corevia.presentation.common.i18 import I18n
+from corevia.presentation.common.i18n import I18n
 
 class LanguageButton(QToolButton):
     def __init__(
