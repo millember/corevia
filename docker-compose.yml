@@ -9,9 +9,40 @@ services:
     volumes:
       - .:/workspace
 
+    environment:
+      UV_CACHE_DIR: /tmp/uv-cache
+      PYTHONPYCACHEPREFIX: /tmp/python-pycache
+
     command:
       - bash
       - -lc
       - |
-        uv sync
+        set -euo pipefail
+        uv sync --locked
         sleep infinity
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+
+    working_dir: /workspace
+
+    volumes:
+      - .:/workspace
+
+    environment:
+      UV_CACHE_DIR: /tmp/uv-cache
+      RUFF_CACHE_DIR: /tmp/ruff-cache
+      PYTHONPYCACHEPREFIX: /tmp/python-pycache
+
+    command:
+      - bash
+      - -lc
+      - |
+        set -euo pipefail
+        uv sync --locked
+        uv run python -m compileall -q -f corevia tests
+        uv run ruff check corevia tests
+        uv run ruff format --check corevia tests
+        uv run pytest -q -p no:cacheprovider
