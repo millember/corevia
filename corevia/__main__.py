@@ -1,4 +1,4 @@
-from corevia.presentation.dekstop.app import (
+from corevia.presentation.desktop.app import (
     run_desktop,
 )
 
