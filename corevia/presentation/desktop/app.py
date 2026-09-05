@@ -45,7 +45,7 @@ class MainWindow(QMainWindow):
 
     def _change_language(
         self,
-        language:str,
+        language: str,
     ) -> None:
         self._i18n.set_language(language)
 
