@@ -38,6 +38,7 @@ RUN apt-get update \
         libxi6 \
         libxkbcommon-x11-0 \
         libxrender1 \
+        sqlite3 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace
